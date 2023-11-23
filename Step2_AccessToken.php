@@ -16,7 +16,7 @@ $stringToSign = $clientKey . '|' . $timestamp;
 echo "stringToSign=" . $stringToSign . PHP_EOL;
 
 //********** begin signature ***************
-// 将DER格式的私钥转换为PEM格式
+// DER -> PEM
 $privateKeyPem = chunk_split($privateKeyStr, 64);
 $privateKeyPem = "-----BEGIN PRIVATE KEY-----\n" . $privateKeyPem . "-----END PRIVATE KEY-----\n";
 echo $privateKeyPem . PHP_EOL;
