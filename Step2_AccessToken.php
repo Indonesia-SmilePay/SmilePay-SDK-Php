@@ -56,7 +56,7 @@ $response = curl_exec($ch);
 
 // Check for errors
 if ($response === false) {
-    echo 'cURL 错误: ' . curl_error($ch);
+    echo 'cURL error: ' . curl_error($ch);
 } else {
     // Process response result
     echo $response;
