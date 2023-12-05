@@ -122,6 +122,7 @@ curl_setopt($ch, CURLOPT_URL, $url);  // API URL
 curl_setopt($ch, CURLOPT_POST, true);  // POST
 curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonString);  // JSON Data
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Content-Type: application/json',
     'Authorization: Bearer ' . $accessToken,
@@ -142,7 +143,8 @@ if ($response === false) {
     echo 'cURL error: ' . curl_error($ch);
 } else {
     // Process response result
-    echo $response;
+    echo PHP_EOL;
+    echo "response=" . $response . PHP_EOL;
 }
 
 // Close cURL handle

@@ -4,7 +4,7 @@ include "Constant.php";
 echo "=====> step3 : SmilePay Payin" . PHP_EOL;
 
 //get accessToken.  from step2
-$accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MDE3NDUzMjMsImV4cCI6MTcwMTc0NjIyMywiaWF0IjoxNzAxNzQ1MzIzLCJNRVJDSEFOVF9JRCI6InNhbmRib3gtMTAwMDEifQ.M_PdCSJPhGrJ3OJODyvn14Yjd84cNXLpCPcXk0X0_ac';
+$accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MDE3NjM2MjIsImV4cCI6MTcwMTc2NDUyMiwiaWF0IjoxNzAxNzYzNjIyLCJNRVJDSEFOVF9JRCI6InNhbmRib3gtMTAwMDEifQ.VxIFe9KX_qvJLM5o_p3ODRSdK9t7tKx_8Tll0Dc8_ms';
 
 //url
 $endPointUlr = PAY_IN_API;
@@ -120,6 +120,7 @@ curl_setopt($ch, CURLOPT_URL, $url);  // API URL
 curl_setopt($ch, CURLOPT_POST, true);  // POST
 curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonString);  // JSON Data
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Content-Type: application/json',
     'Authorization: Bearer ' . $accessToken,
@@ -133,14 +134,15 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 
 // Execute the request and get the response
 $response = curl_exec($ch);
-echo $response . PHP_EOL;
+//echo $response . PHP_EOL;
 
 // Check for errors
 if ($response === false) {
     echo 'cURL error: ' . curl_error($ch);
 } else {
     // Process response result
-    echo $response;
+    echo PHP_EOL;
+    echo "response=" . $response . PHP_EOL;
 }
 
 // Close cURL handle
