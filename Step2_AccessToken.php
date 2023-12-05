@@ -1,4 +1,5 @@
 <?php
+include "Constant.php";
 
 echo "=====> step2 : Create Access Token" . PHP_EOL;
 
@@ -9,7 +10,7 @@ $privateKeyStr = 'MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDGWPgn9MHGpI
 $timestamp = '2023-11-21T11:03:47+07:00';
 
 //get merchantId from merchant platform
-$clientKey = 'sandbox-10001';
+$clientKey = MERCHANT_ID;
 
 //build string to sign
 $stringToSign = $clientKey . '|' . $timestamp;
@@ -40,12 +41,12 @@ $jsonData = json_encode($postData);
 $ch = curl_init();
 
 // Set cURL options
-curl_setopt($ch, CURLOPT_URL, 'https://sandbox-gateway.smilepay.id/v1.0/access-token/b2b');  // API URL
+curl_setopt($ch, CURLOPT_URL, BASE_SANDBOX_URL . ACCESS_TOKEN_API);  // API URL
 curl_setopt($ch, CURLOPT_POST, true);  // POST
 curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);  // JSON Data
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'Content-Type: application/json',
+    'Content-Type: ' . CONTENT_TYPE,
     'X-TIMESTAMP: ' . $timestamp,
     'X-CLIENT-KEY: ' . $clientKey,
     'X-SIGNATURE: ' . $base64Sign
